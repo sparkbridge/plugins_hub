@@ -35,3 +35,9 @@ git commit -m "fix sth"
 git tag v1.0.1
 git push origin v1.0.1
 ```
+
+## 📝 构建结果
+
+构建完成后，会自动生成 Release，并挂载每个插件的 `.zip` 包。
+
+注意：spark.json 文件中的 `name` 字段仅能包含数字、字母与下划线，否则会被插件安装器拦截。`spark.json`中的version仅能填写数组，如：`[1,0,0]`。

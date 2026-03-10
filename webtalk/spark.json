@@ -1,6 +1,6 @@
 {
     "name": "webtalk",
-    "version": "1.0.0",
+    "version": [1,0,0],
     "author": "Sbaoor",
     "desc": "从网页与服务器进行聊天",
     "permission": "key",
