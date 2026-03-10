@@ -1,0 +1,13 @@
+{
+    "name": "ccb",
+    "author": "lition",
+    "version": [
+        0,
+        0,
+        2
+    ],
+    "priority": "post",
+  "permission": "key",
+    "desc": "鉴别群聊中的踩踩背大手子",
+    "load": true
+}

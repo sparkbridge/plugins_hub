@@ -1,7 +1,6 @@
 const bilibiliService = require('./bilibiliService');
-const msgbuilder = require('../../handles/msgbuilder'); // 确保此路径对于您的框架是正确的
-const logger = spark.getLogger('bili-parser')
-
+const msgbuilder = require('../../handles/msgbuilder'); 
+const logger = spark.getLogger()
 logger.info('=B站自动解析插件(全能版)=插件已成功加载，支持长/短链接及小程序卡片！');
 
 
@@ -14,7 +13,7 @@ function reBuildRawMessage(message) {
 
 spark.on('message.group.normal', async (e, reply) => {
     // console.log(spark.env.get("main_group") == e.group_id)
-    if (e.group_id.toString() !== spark.env.get("main_group")) return;
+    if (e.group_id !== spark.env.get("main_group")) return;
     // console.log(e.message)
     // console.log(e.message[0].data.text)
     // Bilibili在QQ小程序中的固定AppID，用于精确识别
@@ -63,7 +62,14 @@ spark.on('message.group.normal', async (e, reply) => {
 			logger.info("找到B站链接",link)
             const videoInfo = await bilibiliService.parseBilibiliLink(link);
 
+           
+
             const description = videoInfo.desc.substring(0, 70) + (videoInfo.desc.length > 70 ? '...' : '');
+
+            // bilibiliService.getBilibiliLowQualityUrl(videoInfo.bvid).then(res => { 
+            //     console.log(res)
+            //     reply(res.url)
+            // });
 
             const message = [
                 msgbuilder.img(videoInfo.pic),

@@ -1,0 +1,13 @@
+{
+  "name": "motd",
+  "author": "lition",
+  "version": [
+    0,
+    0,
+    3
+  ],
+  "desc": "服务器查询",
+  "load": true,
+  "priority": "post",
+  "permission": "key"
+}
