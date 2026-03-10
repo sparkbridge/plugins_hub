@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkBridge3 聊天插件</title>
+    <style>
+        /* 全局规范重置 */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        /* 聊天容器（符合拟态玻璃风） */
+        .chat-container {
+            width: 100%;
+            height: calc(100vh - 120px);
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            padding: 16px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            margin-bottom: 16px;
+        }
+
+        /* 消息气泡 */
+        .message-item {
+            margin-bottom: 12px;
+            max-width: 80%;
+        }
+
+        .message-item.other {
+            margin-right: auto;
+        }
+
+        .message-item.self {
+            margin-left: auto;
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 12px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .message-item.self .message-bubble {
+            background-color: #3b82f6;
+            color: #ffffff;
+        }
+
+        .message-meta {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+            padding: 0 4px;
+        }
+
+        .message-item.self .message-meta {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: right;
+        }
+
+        /* 输入区域 */
+        .input-area {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            font-family: inherit;
+            font-size: 14px;
+            resize: none;
+            height: 60px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #messageInput:focus {
+            border-color: #3b82f6;
+        }
+
+        #sendBtn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            background-color: #3b82f6;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #sendBtn:hover {
+            background-color: #2563eb;
+        }
+
+        #sendBtn:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            color: #94a3b8;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container" id="chatContainer">
+        <div class="loading" id="loading">正在加载聊天记录...</div>
+    </div>
+    <div class="input-area">
+        <textarea id="messageInput" placeholder="请输入消息..." spellcheck="false"></textarea>
+        <button id="sendBtn">发送</button>
+    </div>
+
+    <script>
+        // 配置项（需替换为实际接口地址）
+        const CONFIG = {
+            // 聊天历史获取接口（GET）
+            historyApiUrl: '/api/plugin/webtalk/chatlog',
+            // 发送消息接口（POST）
+            sendApiUrl: '/api/plugin/webtalk/send',
+            // 轮询间隔（毫秒）
+            pollInterval: 3000,
+            // 自己的发言名称（可从主系统获取，这里先固定）
+            selfName: '我'
+        };
+
+        // 全局变量
+        let sb3Token = '';
+        let pollTimer = null;
+
+        // 1. 封装主系统提示函数（遵循跨层级通信规范）
+        function showNotice(msg, type = 'info') {
+            if (window !== window.top) {
+                window.parent.postMessage({
+                    action: 'SHOW_NOTICE',
+                    payload: { msg: msg, type: type }
+                }, '*');
+            } else {
+                // 调试模式降级
+                alert(`[${type}] ${msg}`);
+            }
+        }
+
+        // 2. 获取Token（优先URL参数，否则向主系统请求）
+        function getToken() {
+                return new Promise((resolve) => {
+                    // 优先从URL参数获取token
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const urlToken = urlParams.get('token');
+                    if (urlToken) {
+                        sb3Token = urlToken;
+                        resolve();
+                        return;
+                    }
+
+                    // 否则向主应用请求token
+                    if (window !== window.top) {
+                        // 监听主应用返回的token
+                        console.log('监听主应用返回的Token');
+                        window.addEventListener('message', function listener(e) {
+                            if (e.data.action === 'SB3_TOKEN') {
+                                sb3Token = e.data.payload.token;
+                                // showNotice('获取Token成功', 'success');
+                                // console.log('获取Token成功', sb3Token);
+                                window.removeEventListener('message', listener);
+                                resolve();
+                            }
+                        });
+
+                        // 发送获取token请求
+                        window.parent.postMessage({
+                            action: 'GET_SB3_TOKEN'
+                        }, '*');
+                    } else {
+                        // 调试模式下的默认值（生产环境需移除）
+                        sb3Token = 'dev_token_123456';
+                        resolve();
+                    }
+                });
+            }
+
+        // 3. 时间格式化工具
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
+        }
+
+        // 4. 渲染聊天记录
+        function renderChatHistory(history) {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.innerHTML = '';
+
+            if (!history || history.length === 0) {
+                chatContainer.innerHTML = '<div class="loading">暂无聊天记录</div>';
+                return;
+            }
+
+            history.forEach(item => {
+                const isSelf = item.name === CONFIG.selfName;
+                const messageItem = document.createElement('div');
+                messageItem.className = `message-item ${isSelf ? 'self' : 'other'}`;
+
+                const bubble = document.createElement('div');
+                bubble.className = 'message-bubble';
+                bubble.textContent = item.content;
+
+                const meta = document.createElement('div');
+                meta.className = 'message-meta';
+                meta.textContent = `${item.name} · ${formatTime(item.time)}`;
+
+                messageItem.appendChild(bubble);
+                messageItem.appendChild(meta);
+                chatContainer.appendChild(messageItem);
+            });
+
+            // 滚动到底部
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // 5. 获取聊天历史（带Token鉴权）
+        async function fetchChatHistory() {
+            if (!sb3Token) return;
+
+            try {
+                const response = await fetch(`${CONFIG.historyApiUrl}/`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${sb3Token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    // Token失效，通知主系统
+                    window.parent.postMessage({ action: 'TOKEN_EXPIRED' }, '*');
+                    showNotice('登录状态失效，请重新登录', 'error');
+                    return;
+                }
+
+                const data = await response.json();
+                if (data.code === 200) {
+                    renderChatHistory(data.data);
+                } else {
+                    showNotice(`获取聊天记录失败：${data.msg}`, 'error');
+                }
+            } catch (error) {
+                showNotice('网络异常，无法获取聊天记录', 'error');
+                console.error('Fetch history error:', error);
+            }
+        }
+
+        // 6. 发送消息
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const content = input.value.trim();
+
+            if (!content) {
+                showNotice('请输入消息内容', 'warning');
+                return;
+            }
+
+            if (!sb3Token) {
+                showNotice('Token未加载完成，无法发送消息', 'error');
+                return;
+            }
+
+            // 禁用发送按钮
+            sendBtn.disabled = true;
+            try {
+                const response = await fetch(CONFIG.sendApiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${sb3Token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: CONFIG.selfName,
+                        content: content,
+                        time: Date.now()
+                    })
+                });
+
+                const data = await response.json();
+                if (data.code === 200) {
+                    showNotice('消息发送成功', 'success');
+                    input.value = '';
+                    // 立即刷新聊天记录
+                    fetchChatHistory();
+                } else {
+                    showNotice(`发送失败：${data.msg}`, 'error');
+                }
+            } catch (error) {
+                showNotice('网络异常，消息发送失败', 'error');
+                console.error('Send message error:', error);
+            } finally {
+                // 启用发送按钮
+                sendBtn.disabled = false;
+            }
+        }
+
+        // 7. 初始化聊天
+        function initChat() {
+            // 首次获取聊天记录
+            fetchChatHistory();
+            // 启动轮询
+            pollTimer = setInterval(fetchChatHistory, CONFIG.pollInterval);
+
+            // 绑定发送按钮事件
+            document.getElementById('sendBtn').addEventListener('click', sendMessage);
+            // 绑定回车发送（Shift+回车换行）
+            document.getElementById('messageInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
+
+        // 页面加载后初始化
+        window.addEventListener('load',async () => {
+            await getToken();
+            initChat();
+
+            // 监听主系统调整iframe高度的请求（可选）
+            window.addEventListener('message', (e) => {
+                if (e.data.action === 'GET_IFRAME_HEIGHT') {
+                    const height = document.body.scrollHeight;
+                    window.parent.postMessage({
+                        action: 'SET_IFRAME_HEIGHT',
+                        payload: { height: height }
+                    }, '*');
+                }
+            });
+
+            // 通知主系统初始化高度
+            setTimeout(() => {
+                window.parent.postMessage({
+                    action: 'SET_IFRAME_HEIGHT',
+                    payload: { height: document.body.scrollHeight }
+                }, '*');
+            }, 500);
+        });
+
+        // 页面卸载时清除轮询
+        window.addEventListener('beforeunload', () => {
+            if (pollTimer) clearInterval(pollTimer);
+        });
+    </script>
+</body>
+
+</html>

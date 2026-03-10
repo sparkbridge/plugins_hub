@@ -1,0 +1,10 @@
+{
+    "name": "webtalk",
+    "version": "1.0.0",
+    "author": "Sbaoor",
+    "desc": "从网页与服务器进行聊天",
+    "permission": "key",
+    "priority": "main",
+    "load": true,
+    "loadmode": "bds"
+}
