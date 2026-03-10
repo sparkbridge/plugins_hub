@@ -1,0 +1,70 @@
+name: Single Runner Auto Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Process Directories
+        id: process
+        run: |
+          # 创建一个存放 zip 的临时目录
+          mkdir -p ./release_files
+          
+          # 查找所有包含 spark.json 的目录
+          # -printf '%h\n' 获取文件所在的目录路径
+          folders=$(find . -maxdepth 3 -name "spark.json" -printf '%h\n' | sort -u)
+          
+          echo "Found folders to process:"
+          echo "$folders"
+
+          # 循环处理每个目录
+          while IFS= read -r folder; do
+            [ -z "$folder" ] && continue
+            echo "------------------------------------------"
+            echo "Processing: $folder"
+            
+            # 1. 检查是否有 package.json，如果有则执行安装和构建
+            if [ -f "$folder/package.json" ]; then
+              echo "Detected package.json, running npm install..."
+              cd "$folder"
+              npm install
+              npm run build --if-present
+              cd - > /dev/null
+            else
+              echo "No package.json found, skipping npm steps."
+            fi
+            
+            # 2. 打包该目录 (转换路径斜杠为下划线作为文件名)
+            zip_name=$(echo "$folder" | sed 's|^\./||' | tr '/' '_')
+            echo "Archiving to ${zip_name}.zip..."
+            
+            # 打包，先不排除 node_modules 以减小体积
+            zip -r "./release_files/${zip_name}.zip" "$folder"
+            
+          done <<< "$folders"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        if: success()
+        with:
+          files: ./release_files/*.zip
+          body: "Build triggered by tag ${{ github.ref_name }}. All projects included."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

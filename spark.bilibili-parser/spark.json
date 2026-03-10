@@ -1,0 +1,13 @@
+{
+  "name": "bilibili",
+  "author": "lition",
+  "version": [
+    0,
+    0,
+    2
+  ],
+  "desc": "解析B站视频",
+  "load": true,
+  "priority": "post",
+  "permission": "core"
+}

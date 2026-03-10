@@ -1,0 +1,9 @@
+{
+    "name": "spark.ping",
+    "version": "1.0.0",
+    "author": "SparkBridge3 Official",
+    "desc": "查询IP归属地",
+    "permission": "key",
+    "priority": "main",
+    "load": true
+}
