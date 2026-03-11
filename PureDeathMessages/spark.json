@@ -1,0 +1,14 @@
+{
+    "name": "puredeathmessage",
+    "author": "lition",
+    "version": [
+        0,
+        0,
+        2
+    ],
+    "desc": "提供死亡消息输出",
+    "loadmode": "bds",
+    "permission": "key",
+    "priority": "main",
+    "load": true
+}

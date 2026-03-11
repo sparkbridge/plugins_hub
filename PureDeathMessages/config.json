@@ -1,0 +1,19 @@
+{
+    "lang": "bedrock",
+    "enabledEntity": {
+        "minecraft:cat": true,
+        "minecraft:donkey": true,
+        "minecraft:horse": true,
+        "minecraft:mule": true,
+        "minecraft:player": true,
+        "minecraft:wolf": true
+    },
+    "enableMobCustomName": true,
+    "enableItemCustomName": true,
+    "emojiSeparator": "  ",
+    "outputEmoji": false,
+    "apiEmoji": false,
+    "followGamerule": true,
+    "logToConsole": true,
+    "logToFile": true
+}
