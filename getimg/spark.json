@@ -1,0 +1,14 @@
+{
+    "name": "getimg",
+    "author": "lition",
+    "version": [
+        0,
+        0,
+        1
+    ],
+    "desc": "获取表情原图",
+    "loadmode": "hybrid",
+    "permission": "key",
+    "priority": "main",
+    "load": true
+}
