@@ -1,0 +1,10 @@
+{
+    "name": "MCWiki",
+    "author": "咕咕鸡",
+    "version": [1, 0, 0],
+    "desc": "在群聊中使用wiki xxx查询MCWiki",
+    "loadmode": "hybrid",
+    "priority": "main",
+    "permission": "key",
+    "load": true
+}
