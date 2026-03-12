@@ -9,5 +9,5 @@
   "desc": "解析B站视频",
   "load": true,
   "priority": "post",
-  "permission": "core"
+  "permission": "key"
 }

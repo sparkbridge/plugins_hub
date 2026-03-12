@@ -1,0 +1,10 @@
+{
+    "name":"DiskInformation",
+    "author":"赫托尼亚，WillieForbes",
+    "version":[0,0,1],
+    "desc":"发送 “磁盘信息” 获取硬盘信息",
+    "permission": "key",
+    "priority": "post",
+    "loadmode": "hybrid",
+    "load": true
+   }
