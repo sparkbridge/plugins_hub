@@ -1,0 +1,14 @@
+{
+    "name": "joingroupcheck",
+    "author": "lition",
+    "version": [
+        0,
+        0,
+        1
+    ],
+    "desc": "群组加入审核",
+    "loadmode": "hybrid",
+    "permission": "key",
+    "priority": "post",
+    "load": true
+}
