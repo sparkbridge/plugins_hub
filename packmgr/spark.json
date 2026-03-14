@@ -1,0 +1,14 @@
+{
+    "name": "packmgr",
+    "author": "lition",
+    "version": [
+        0,
+        0,
+        1
+    ],
+    "desc": "管理资源包与行为包",
+    "loadmode": "bds",
+    "permission": "key",
+    "priority": "main",
+    "load": true
+}
