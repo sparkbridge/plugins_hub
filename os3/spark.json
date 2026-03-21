@@ -1,0 +1,13 @@
+{
+    "name": "os",
+    "author": "户山兔兔",
+    "version": [
+        3,
+        0,
+        0
+    ],
+    "desc": "服务器状态查询",
+    "load": true,
+    "priority": "post",
+    "permission": "core"
+}

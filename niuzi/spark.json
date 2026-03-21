@@ -1,0 +1,13 @@
+{
+  "name": "niuzi",
+  "author": "lition",
+  "version": [
+    0,
+    0,
+    4
+  ],
+  "desc": "妞子系统",
+  "load": true,
+  "priority": "post",
+  "permission": "key"
+}
