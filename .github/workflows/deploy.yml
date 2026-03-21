@@ -55,7 +55,7 @@ jobs:
             
             # --- 打包 ---
             zip_name=$(echo "$folder" | sed 's|^\./||' | tr '/' '_')
-            zip -r "./release_files/${zip_name}.zip" "$folder""
+            zip -r "./release_files/${zip_name}.zip" "$folder"
             
           done <<< "$folders"
           
