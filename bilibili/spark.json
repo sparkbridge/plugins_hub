@@ -4,7 +4,7 @@
   "version": [
     0,
     0,
-    3
+    4
   ],
   "desc": "解析B站视频",
   "load": true,

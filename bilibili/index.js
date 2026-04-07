@@ -62,7 +62,7 @@ spark.on('message.group.normal', async (e, reply) => {
 			logger.info("找到B站链接",link)
             const videoInfo = await bilibiliService.parseBilibiliLink(link);
 
-           
+        //    console.log(JSON.stringify(videoInfo))
 
             const description = videoInfo.desc.substring(0, 70) + (videoInfo.desc.length > 70 ? '...' : '');
 
@@ -73,11 +73,8 @@ spark.on('message.group.normal', async (e, reply) => {
 
             const message = [
                 msgbuilder.img(videoInfo.pic),
-                `\n标题: ${videoInfo.title}`,
-                `\n-------------------`,
-                `\n分类: ${videoInfo.tname}`,
-                `\n简介: ${description}`,
-                `\n原链接: https://www.bilibili.com/video/${videoInfo.bvid}`
+                formatBilibiliInfo(videoInfo)
+                
             ];
             
             reply(message);
@@ -87,3 +84,14 @@ spark.on('message.group.normal', async (e, reply) => {
         }
     }
 });
+
+function formatBilibiliInfo(res) {
+    return `
+标题:${res.title}
+简介:${res.desc}
+作者:${res.owner.name}
+
+👍点赞:${res.stat.like}    ⭐收藏:${res.stat.favorite}
+🥇投币:${res.stat.coin}      ↩️转发:${res.stat.share}
+`;
+}
