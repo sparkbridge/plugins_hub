@@ -1,0 +1,997 @@
+{
+    "0": {
+        "unicode": "",
+        "hex": "\\uE200",
+        "index": 0
+    },
+    "1": {
+        "unicode": "",
+        "hex": "\\uE201",
+        "index": 1
+    },
+    "2": {
+        "unicode": "",
+        "hex": "\\uE202",
+        "index": 2
+    },
+    "3": {
+        "unicode": "",
+        "hex": "\\uE203",
+        "index": 3
+    },
+    "4": {
+        "unicode": "",
+        "hex": "\\uE204",
+        "index": 4
+    },
+    "5": {
+        "unicode": "",
+        "hex": "\\uE205",
+        "index": 5
+    },
+    "6": {
+        "unicode": "",
+        "hex": "\\uE206",
+        "index": 6
+    },
+    "7": {
+        "unicode": "",
+        "hex": "\\uE207",
+        "index": 7
+    },
+    "8": {
+        "unicode": "",
+        "hex": "\\uE208",
+        "index": 8
+    },
+    "9": {
+        "unicode": "",
+        "hex": "\\uE209",
+        "index": 9
+    },
+    "10": {
+        "unicode": "",
+        "hex": "\\uE20A",
+        "index": 10
+    },
+    "11": {
+        "unicode": "",
+        "hex": "\\uE20B",
+        "index": 11
+    },
+    "12": {
+        "unicode": "",
+        "hex": "\\uE20C",
+        "index": 12
+    },
+    "13": {
+        "unicode": "",
+        "hex": "\\uE20D",
+        "index": 13
+    },
+    "14": {
+        "unicode": "",
+        "hex": "\\uE20E",
+        "index": 14
+    },
+    "15": {
+        "unicode": "",
+        "hex": "\\uE20F",
+        "index": 15
+    },
+    "16": {
+        "unicode": "",
+        "hex": "\\uE210",
+        "index": 16
+    },
+    "18": {
+        "unicode": "",
+        "hex": "\\uE211",
+        "index": 17
+    },
+    "19": {
+        "unicode": "",
+        "hex": "\\uE212",
+        "index": 18
+    },
+    "20": {
+        "unicode": "",
+        "hex": "\\uE213",
+        "index": 19
+    },
+    "21": {
+        "unicode": "",
+        "hex": "\\uE214",
+        "index": 20
+    },
+    "22": {
+        "unicode": "",
+        "hex": "\\uE215",
+        "index": 21
+    },
+    "23": {
+        "unicode": "",
+        "hex": "\\uE216",
+        "index": 22
+    },
+    "24": {
+        "unicode": "",
+        "hex": "\\uE217",
+        "index": 23
+    },
+    "25": {
+        "unicode": "",
+        "hex": "\\uE218",
+        "index": 24
+    },
+    "26": {
+        "unicode": "",
+        "hex": "\\uE219",
+        "index": 25
+    },
+    "27": {
+        "unicode": "",
+        "hex": "\\uE21A",
+        "index": 26
+    },
+    "28": {
+        "unicode": "",
+        "hex": "\\uE21B",
+        "index": 27
+    },
+    "29": {
+        "unicode": "",
+        "hex": "\\uE21C",
+        "index": 28
+    },
+    "30": {
+        "unicode": "",
+        "hex": "\\uE21D",
+        "index": 29
+    },
+    "31": {
+        "unicode": "",
+        "hex": "\\uE21E",
+        "index": 30
+    },
+    "32": {
+        "unicode": "",
+        "hex": "\\uE21F",
+        "index": 31
+    },
+    "33": {
+        "unicode": "",
+        "hex": "\\uE220",
+        "index": 32
+    },
+    "34": {
+        "unicode": "",
+        "hex": "\\uE221",
+        "index": 33
+    },
+    "35": {
+        "unicode": "",
+        "hex": "\\uE222",
+        "index": 34
+    },
+    "36": {
+        "unicode": "",
+        "hex": "\\uE223",
+        "index": 35
+    },
+    "37": {
+        "unicode": "",
+        "hex": "\\uE224",
+        "index": 36
+    },
+    "38": {
+        "unicode": "",
+        "hex": "\\uE225",
+        "index": 37
+    },
+    "39": {
+        "unicode": "",
+        "hex": "\\uE226",
+        "index": 38
+    },
+    "41": {
+        "unicode": "",
+        "hex": "\\uE227",
+        "index": 39
+    },
+    "42": {
+        "unicode": "",
+        "hex": "\\uE228",
+        "index": 40
+    },
+    "43": {
+        "unicode": "",
+        "hex": "\\uE229",
+        "index": 41
+    },
+    "46": {
+        "unicode": "",
+        "hex": "\\uE22A",
+        "index": 42
+    },
+    "49": {
+        "unicode": "",
+        "hex": "\\uE22B",
+        "index": 43
+    },
+    "53": {
+        "unicode": "",
+        "hex": "\\uE22C",
+        "index": 44
+    },
+    "56": {
+        "unicode": "",
+        "hex": "\\uE22D",
+        "index": 45
+    },
+    "59": {
+        "unicode": "",
+        "hex": "\\uE22E",
+        "index": 46
+    },
+    "60": {
+        "unicode": "",
+        "hex": "\\uE22F",
+        "index": 47
+    },
+    "63": {
+        "unicode": "",
+        "hex": "\\uE230",
+        "index": 48
+    },
+    "64": {
+        "unicode": "",
+        "hex": "\\uE231",
+        "index": 49
+    },
+    "66": {
+        "unicode": "",
+        "hex": "\\uE232",
+        "index": 50
+    },
+    "67": {
+        "unicode": "",
+        "hex": "\\uE233",
+        "index": 51
+    },
+    "74": {
+        "unicode": "",
+        "hex": "\\uE234",
+        "index": 52
+    },
+    "75": {
+        "unicode": "",
+        "hex": "\\uE235",
+        "index": 53
+    },
+    "76": {
+        "unicode": "",
+        "hex": "\\uE236",
+        "index": 54
+    },
+    "77": {
+        "unicode": "",
+        "hex": "\\uE237",
+        "index": 55
+    },
+    "78": {
+        "unicode": "",
+        "hex": "\\uE238",
+        "index": 56
+    },
+    "79": {
+        "unicode": "",
+        "hex": "\\uE239",
+        "index": 57
+    },
+    "85": {
+        "unicode": "",
+        "hex": "\\uE23A",
+        "index": 58
+    },
+    "86": {
+        "unicode": "",
+        "hex": "\\uE23B",
+        "index": 59
+    },
+    "89": {
+        "unicode": "",
+        "hex": "\\uE23C",
+        "index": 60
+    },
+    "96": {
+        "unicode": "",
+        "hex": "\\uE23D",
+        "index": 61
+    },
+    "97": {
+        "unicode": "",
+        "hex": "\\uE23E",
+        "index": 62
+    },
+    "98": {
+        "unicode": "",
+        "hex": "\\uE23F",
+        "index": 63
+    },
+    "99": {
+        "unicode": "",
+        "hex": "\\uE240",
+        "index": 64
+    },
+    "100": {
+        "unicode": "",
+        "hex": "\\uE241",
+        "index": 65
+    },
+    "101": {
+        "unicode": "",
+        "hex": "\\uE242",
+        "index": 66
+    },
+    "102": {
+        "unicode": "",
+        "hex": "\\uE243",
+        "index": 67
+    },
+    "103": {
+        "unicode": "",
+        "hex": "\\uE244",
+        "index": 68
+    },
+    "104": {
+        "unicode": "",
+        "hex": "\\uE245",
+        "index": 69
+    },
+    "105": {
+        "unicode": "",
+        "hex": "\\uE246",
+        "index": 70
+    },
+    "106": {
+        "unicode": "",
+        "hex": "\\uE247",
+        "index": 71
+    },
+    "107": {
+        "unicode": "",
+        "hex": "\\uE248",
+        "index": 72
+    },
+    "108": {
+        "unicode": "",
+        "hex": "\\uE249",
+        "index": 73
+    },
+    "109": {
+        "unicode": "",
+        "hex": "\\uE24A",
+        "index": 74
+    },
+    "110": {
+        "unicode": "",
+        "hex": "\\uE24B",
+        "index": 75
+    },
+    "111": {
+        "unicode": "",
+        "hex": "\\uE24C",
+        "index": 76
+    },
+    "112": {
+        "unicode": "",
+        "hex": "\\uE24D",
+        "index": 77
+    },
+    "114": {
+        "unicode": "",
+        "hex": "\\uE24E",
+        "index": 78
+    },
+    "116": {
+        "unicode": "",
+        "hex": "\\uE24F",
+        "index": 79
+    },
+    "118": {
+        "unicode": "",
+        "hex": "\\uE250",
+        "index": 80
+    },
+    "119": {
+        "unicode": "",
+        "hex": "\\uE251",
+        "index": 81
+    },
+    "120": {
+        "unicode": "",
+        "hex": "\\uE252",
+        "index": 82
+    },
+    "121": {
+        "unicode": "",
+        "hex": "\\uE253",
+        "index": 83
+    },
+    "123": {
+        "unicode": "",
+        "hex": "\\uE254",
+        "index": 84
+    },
+    "124": {
+        "unicode": "",
+        "hex": "\\uE255",
+        "index": 85
+    },
+    "125": {
+        "unicode": "",
+        "hex": "\\uE256",
+        "index": 86
+    },
+    "129": {
+        "unicode": "",
+        "hex": "\\uE257",
+        "index": 87
+    },
+    "137": {
+        "unicode": "",
+        "hex": "\\uE258",
+        "index": 88
+    },
+    "144": {
+        "unicode": "",
+        "hex": "\\uE259",
+        "index": 89
+    },
+    "146": {
+        "unicode": "",
+        "hex": "\\uE25A",
+        "index": 90
+    },
+    "147": {
+        "unicode": "",
+        "hex": "\\uE25B",
+        "index": 91
+    },
+    "169": {
+        "unicode": "",
+        "hex": "\\uE25C",
+        "index": 92
+    },
+    "171": {
+        "unicode": "",
+        "hex": "\\uE25D",
+        "index": 93
+    },
+    "172": {
+        "unicode": "",
+        "hex": "\\uE25E",
+        "index": 94
+    },
+    "173": {
+        "unicode": "",
+        "hex": "\\uE25F",
+        "index": 95
+    },
+    "174": {
+        "unicode": "",
+        "hex": "\\uE260",
+        "index": 96
+    },
+    "175": {
+        "unicode": "",
+        "hex": "\\uE261",
+        "index": 97
+    },
+    "176": {
+        "unicode": "",
+        "hex": "\\uE262",
+        "index": 98
+    },
+    "177": {
+        "unicode": "",
+        "hex": "\\uE263",
+        "index": 99
+    },
+    "178": {
+        "unicode": "",
+        "hex": "\\uE264",
+        "index": 100
+    },
+    "179": {
+        "unicode": "",
+        "hex": "\\uE265",
+        "index": 101
+    },
+    "181": {
+        "unicode": "",
+        "hex": "\\uE266",
+        "index": 102
+    },
+    "182": {
+        "unicode": "",
+        "hex": "\\uE267",
+        "index": 103
+    },
+    "183": {
+        "unicode": "",
+        "hex": "\\uE268",
+        "index": 104
+    },
+    "185": {
+        "unicode": "",
+        "hex": "\\uE269",
+        "index": 105
+    },
+    "187": {
+        "unicode": "",
+        "hex": "\\uE26A",
+        "index": 106
+    },
+    "201": {
+        "unicode": "",
+        "hex": "\\uE26B",
+        "index": 107
+    },
+    "212": {
+        "unicode": "",
+        "hex": "\\uE26C",
+        "index": 108
+    },
+    "262": {
+        "unicode": "",
+        "hex": "\\uE26D",
+        "index": 109
+    },
+    "263": {
+        "unicode": "",
+        "hex": "\\uE26E",
+        "index": 110
+    },
+    "264": {
+        "unicode": "",
+        "hex": "\\uE26F",
+        "index": 111
+    },
+    "265": {
+        "unicode": "",
+        "hex": "\\uE270",
+        "index": 112
+    },
+    "266": {
+        "unicode": "",
+        "hex": "\\uE271",
+        "index": 113
+    },
+    "267": {
+        "unicode": "",
+        "hex": "\\uE272",
+        "index": 114
+    },
+    "268": {
+        "unicode": "",
+        "hex": "\\uE273",
+        "index": 115
+    },
+    "269": {
+        "unicode": "",
+        "hex": "\\uE274",
+        "index": 116
+    },
+    "270": {
+        "unicode": "",
+        "hex": "\\uE275",
+        "index": 117
+    },
+    "271": {
+        "unicode": "",
+        "hex": "\\uE276",
+        "index": 118
+    },
+    "272": {
+        "unicode": "",
+        "hex": "\\uE277",
+        "index": 119
+    },
+    "273": {
+        "unicode": "",
+        "hex": "\\uE278",
+        "index": 120
+    },
+    "277": {
+        "unicode": "",
+        "hex": "\\uE279",
+        "index": 121
+    },
+    "281": {
+        "unicode": "",
+        "hex": "\\uE27A",
+        "index": 122
+    },
+    "282": {
+        "unicode": "",
+        "hex": "\\uE27B",
+        "index": 123
+    },
+    "283": {
+        "unicode": "",
+        "hex": "\\uE27C",
+        "index": 124
+    },
+    "284": {
+        "unicode": "",
+        "hex": "\\uE27D",
+        "index": 125
+    },
+    "285": {
+        "unicode": "",
+        "hex": "\\uE27E",
+        "index": 126
+    },
+    "286": {
+        "unicode": "",
+        "hex": "\\uE27F",
+        "index": 127
+    },
+    "287": {
+        "unicode": "",
+        "hex": "\\uE280",
+        "index": 128
+    },
+    "289": {
+        "unicode": "",
+        "hex": "\\uE281",
+        "index": 129
+    },
+    "293": {
+        "unicode": "",
+        "hex": "\\uE282",
+        "index": 130
+    },
+    "294": {
+        "unicode": "",
+        "hex": "\\uE283",
+        "index": 131
+    },
+    "295": {
+        "unicode": "",
+        "hex": "\\uE284",
+        "index": 132
+    },
+    "297": {
+        "unicode": "",
+        "hex": "\\uE285",
+        "index": 133
+    },
+    "298": {
+        "unicode": "",
+        "hex": "\\uE286",
+        "index": 134
+    },
+    "299": {
+        "unicode": "",
+        "hex": "\\uE287",
+        "index": 135
+    },
+    "300": {
+        "unicode": "",
+        "hex": "\\uE288",
+        "index": 136
+    },
+    "302": {
+        "unicode": "",
+        "hex": "\\uE289",
+        "index": 137
+    },
+    "303": {
+        "unicode": "",
+        "hex": "\\uE28A",
+        "index": 138
+    },
+    "305": {
+        "unicode": "",
+        "hex": "\\uE28B",
+        "index": 139
+    },
+    "306": {
+        "unicode": "",
+        "hex": "\\uE28C",
+        "index": 140
+    },
+    "307": {
+        "unicode": "",
+        "hex": "\\uE28D",
+        "index": 141
+    },
+    "311": {
+        "unicode": "",
+        "hex": "\\uE28E",
+        "index": 142
+    },
+    "312": {
+        "unicode": "",
+        "hex": "\\uE28F",
+        "index": 143
+    },
+    "314": {
+        "unicode": "",
+        "hex": "\\uE290",
+        "index": 144
+    },
+    "317": {
+        "unicode": "",
+        "hex": "\\uE291",
+        "index": 145
+    },
+    "318": {
+        "unicode": "",
+        "hex": "\\uE292",
+        "index": 146
+    },
+    "319": {
+        "unicode": "",
+        "hex": "\\uE293",
+        "index": 147
+    },
+    "320": {
+        "unicode": "",
+        "hex": "\\uE294",
+        "index": 148
+    },
+    "323": {
+        "unicode": "",
+        "hex": "\\uE295",
+        "index": 149
+    },
+    "324": {
+        "unicode": "",
+        "hex": "\\uE296",
+        "index": 150
+    },
+    "325": {
+        "unicode": "",
+        "hex": "\\uE297",
+        "index": 151
+    },
+    "326": {
+        "unicode": "",
+        "hex": "\\uE298",
+        "index": 152
+    },
+    "332": {
+        "unicode": "",
+        "hex": "\\uE299",
+        "index": 153
+    },
+    "333": {
+        "unicode": "",
+        "hex": "\\uE29A",
+        "index": 154
+    },
+    "334": {
+        "unicode": "",
+        "hex": "\\uE29B",
+        "index": 155
+    },
+    "336": {
+        "unicode": "",
+        "hex": "\\uE29C",
+        "index": 156
+    },
+    "337": {
+        "unicode": "",
+        "hex": "\\uE29D",
+        "index": 157
+    },
+    "338": {
+        "unicode": "",
+        "hex": "\\uE29E",
+        "index": 158
+    },
+    "339": {
+        "unicode": "",
+        "hex": "\\uE29F",
+        "index": 159
+    },
+    "341": {
+        "unicode": "",
+        "hex": "\\uE2A0",
+        "index": 160
+    },
+    "342": {
+        "unicode": "",
+        "hex": "\\uE2A1",
+        "index": 161
+    },
+    "343": {
+        "unicode": "",
+        "hex": "\\uE2A2",
+        "index": 162
+    },
+    "344": {
+        "unicode": "",
+        "hex": "\\uE2A3",
+        "index": 163
+    },
+    "345": {
+        "unicode": "",
+        "hex": "\\uE2A4",
+        "index": 164
+    },
+    "346": {
+        "unicode": "",
+        "hex": "\\uE2A5",
+        "index": 165
+    },
+    "347": {
+        "unicode": "",
+        "hex": "\\uE2A6",
+        "index": 166
+    },
+    "349": {
+        "unicode": "",
+        "hex": "\\uE2A7",
+        "index": 167
+    },
+    "350": {
+        "unicode": "",
+        "hex": "\\uE2A8",
+        "index": 168
+    },
+    "351": {
+        "unicode": "",
+        "hex": "\\uE2A9",
+        "index": 169
+    },
+    "352": {
+        "unicode": "",
+        "hex": "\\uE2AA",
+        "index": 170
+    },
+    "353": {
+        "unicode": "",
+        "hex": "\\uE2AB",
+        "index": 171
+    },
+    "354": {
+        "unicode": "",
+        "hex": "\\uE2AC",
+        "index": 172
+    },
+    "355": {
+        "unicode": "",
+        "hex": "\\uE2AD",
+        "index": 173
+    },
+    "356": {
+        "unicode": "",
+        "hex": "\\uE2AE",
+        "index": 174
+    },
+    "357": {
+        "unicode": "",
+        "hex": "\\uE2AF",
+        "index": 175
+    },
+    "358": {
+        "unicode": "",
+        "hex": "\\uE2B0",
+        "index": 176
+    },
+    "359": {
+        "unicode": "",
+        "hex": "\\uE2B1",
+        "index": 177
+    },
+    "392": {
+        "unicode": "",
+        "hex": "\\uE2B2",
+        "index": 178
+    },
+    "393": {
+        "unicode": "",
+        "hex": "\\uE2B3",
+        "index": 179
+    },
+    "394": {
+        "unicode": "",
+        "hex": "\\uE2B4",
+        "index": 180
+    },
+    "395": {
+        "unicode": "",
+        "hex": "\\uE2B5",
+        "index": 181
+    },
+    "415": {
+        "unicode": "",
+        "hex": "\\uE2B6",
+        "index": 182
+    },
+    "416": {
+        "unicode": "",
+        "hex": "\\uE2B7",
+        "index": 183
+    },
+    "417": {
+        "unicode": "",
+        "hex": "\\uE2B8",
+        "index": 184
+    },
+    "419": {
+        "unicode": "",
+        "hex": "\\uE2B9",
+        "index": 185
+    },
+    "420": {
+        "unicode": "",
+        "hex": "\\uE2BA",
+        "index": 186
+    },
+    "421": {
+        "unicode": "",
+        "hex": "\\uE2BB",
+        "index": 187
+    },
+    "422": {
+        "unicode": "",
+        "hex": "\\uE2BC",
+        "index": 188
+    },
+    "423": {
+        "unicode": "",
+        "hex": "\\uE2BD",
+        "index": 189
+    },
+    "424": {
+        "unicode": "",
+        "hex": "\\uE2BE",
+        "index": 190
+    },
+    "425": {
+        "unicode": "",
+        "hex": "\\uE2BF",
+        "index": 191
+    },
+    "426": {
+        "unicode": "",
+        "hex": "\\uE2C0",
+        "index": 192
+    },
+    "427": {
+        "unicode": "",
+        "hex": "\\uE2C1",
+        "index": 193
+    },
+    "428": {
+        "unicode": "",
+        "hex": "\\uE2C2",
+        "index": 194
+    },
+    "429": {
+        "unicode": "",
+        "hex": "\\uE2C3",
+        "index": 195
+    },
+    "430": {
+        "unicode": "",
+        "hex": "\\uE2C4",
+        "index": 196
+    },
+    "431": {
+        "unicode": "",
+        "hex": "\\uE2C5",
+        "index": 197
+    },
+    "432": {
+        "unicode": "",
+        "hex": "\\uE2C6",
+        "index": 198
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "qqface",
+    "author": "sbaoor",
+    "version": [
+        1,
+        0,
+        0
+    ],
+    "desc": "游戏内展示QQ内置表情",
+    "loadmode": "bds",
+    "permission": "key",
+    "priority": "post",
+    "load": true
+}
