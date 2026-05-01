@@ -1,0 +1,14 @@
+{
+    "name": "deerpipe",
+    "author": "lition",
+    "version": [
+        0,
+        0,
+        1
+    ],
+    "desc": "一款自定义签到插件",
+    "loadmode": "hybrid",
+    "permission": "key",
+    "priority": "main",
+    "load": true
+}
