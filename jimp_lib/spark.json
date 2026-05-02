@@ -1,17 +1,15 @@
 {
-    "name": "deerpipe",
+    "name": "jimp_lib",
     "author": "lition",
     "version": [
         0,
         0,
         1
     ],
-    "desc": "一款自定义签到插件",
+    "desc": "JIMP库",
     "loadmode": "hybrid",
     "permission": "key",
     "priority": "main",
-    "deps":[
-        "jimp_lib"
-    ],
+    "min_v":"3.0.24",
     "load": true
 }

@@ -1,5 +1,16 @@
-const { Jimp, loadFont } = require('jimp');
-const { SANS_32_BLACK, SANS_16_BLACK } = require('jimp/fonts');
+
+var Jimp, loadFont;
+var SANS_32_BLACK, SANS_16_BLACK;
+
+spark.on("core.ready",()=>{
+    let { Jimp:j, loadFont:l, jimpFonts } = spark.env.get("jimp_lib");
+    Jimp = j;
+    loadFont = l;
+    SANS_32_BLACK = jimpFonts.SANS_32_BLACK;
+    SANS_16_BLACK = jimpFonts.SANS_16_BLACK;
+
+})
+
 const { img } = require('../../handles/msgbuilder');
 const fileObj = spark.getFileHelper('deerpipe');
 

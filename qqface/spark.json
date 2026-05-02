@@ -10,5 +10,6 @@
     "loadmode": "bds",
     "permission": "key",
     "priority": "post",
+    "min_v":"3.0.24",
     "load": true
 }
