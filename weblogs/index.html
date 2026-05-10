@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行为日志查询系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            padding: 24px;
+            background: #f5f7fa;
+        }
+
+        .query-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .query-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .query-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .form-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-item label {
+            font-size: 13px;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .form-item input,
+        .form-item select {
+            height: 40px;
+            padding: 0 14px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .form-item input:focus,
+        .form-item select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+
+        .query-btns {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            height: 40px;
+            padding: 0 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-default {
+            background: #f9fafb;
+            color: #374151;
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-default:hover {
+            background: #f3f4f6;
+        }
+
+        .table-box {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .log-table th,
+        .log-table td {
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .log-table th {
+            background: #fafafa;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .log-table tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .loading,
+        .empty {
+            text-align: center;
+            padding: 80px 0;
+            color: #9ca3af;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .page-btn {
+            min-width: 40px;
+            height: 40px;
+            padding: 0 12px;
+            margin-right: 10px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .page-btn.active {
+            background: #3b82f6;
+            color: #fff;
+            border-color: #3b82f6;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="query-card">
+        <div class="query-title">行为日志查询</div>
+        <div class="query-form">
+            <div class="form-item">
+                <label>日期</label>
+                <input type="date" id="logDate">
+            </div>
+            <div class="form-item">
+                <label>维度</label>
+                <select id="dimension">
+                    <option value="">全部</option>
+                    <option value="主世界">主世界</option>
+                    <option value="下界">下界</option>
+                    <option value="末地">末地</option>
+
+                </select>
+            </div>
+            <div class="form-item">
+                <label>来源</label>
+                <input type="text" id="source" placeholder="来源">
+            </div>
+            <div class="form-item">
+                <label>来源 X</label>
+                <input type="text" id="sourceX" placeholder="来源X">
+            </div>
+            <div class="form-item">
+                <label>来源 Y</label>
+                <input type="text" id="sourceY" placeholder="来源Y">
+            </div>
+            <div class="form-item">
+                <label>来源 Z</label>
+                <input type="text" id="sourceZ" placeholder="来源Z">
+            </div>
+            <div class="form-item">
+                <label>事件</label>
+                <input type="text" id="event" placeholder="事件类型">
+            </div>
+            <div class="form-item">
+                <label>目标</label>
+                <input type="text" id="target" placeholder="目标对象">
+            </div>
+            <div class="form-item">
+                <label>目标 x</label>
+                <input type="text" id="targetX" placeholder="目标x">
+            </div>
+            <div class="form-item">
+                <label>目标 y</label>
+                <input type="text" id="targetY" placeholder="目标y">
+            </div>
+            <div class="form-item">
+                <label>目标 z</label>
+                <input type="text" id="targetZ" placeholder="目标z">
+            </div>
+            <div class="form-item">
+                <label>附加信息</label>
+                <input type="text" id="additionalInfo" placeholder="附加信息">
+            </div>
+        </div>
+        <div class="query-btns">
+            <button class="btn btn-primary" id="searchBtn">搜索</button>
+            <button class="btn btn-default" id="resetBtn">重置</button>
+        </div>
+    </div>
+
+    <div class="table-box">
+        <div id="loading" class="loading" style="display:none;">加载中...</div>
+        <div id="empty" class="empty" style="display:none;">暂无数据</div>
+        <table class="log-table" id="logTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>维度</th>
+                    <th>来源</th>
+                    <th>来源X</th>
+                    <th>来源Y</th>
+                    <th>来源Z</th>
+                    <th>事件</th>
+                    <th>目标</th>
+                    <th>目标x</th>
+                    <th>目标y</th>
+                    <th>目标z</th>
+                    <th>附加信息</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+    </div>
+
+    <div class="pagination" id="pagination" style="display:none;">
+        <button class="page-btn" id="prev">上一页</button>
+        <span id="pages"></span>
+        <button class="page-btn" id="next">下一页</button>
+    </div>
+
+    <script>
+        let sb3Token = '';
+        let currentPage = 1;
+        let totalPage = 1;
+        const pageSize = 15;
+
+        function showNotice(msg, type = 'info') {
+            if (window !== window.top) {
+                window.parent.postMessage({ action: 'SHOW_NOTICE', payload: { msg, type } }, '*');
+            } else {
+                alert(`[${type}] ${msg}`);
+            }
+        }
+
+        function getToday() {
+            return new Date().toISOString().split('T')[0];
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('empty').style.display = 'none';
+            document.getElementById('logTable').style.display = 'none';
+            document.getElementById('pagination').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function showEmpty() {
+            document.getElementById('empty').style.display = 'block';
+            document.getElementById('logTable').style.display = 'none';
+            document.getElementById('pagination').style.display = 'none';
+        }
+
+        // TOKEN 鉴权
+        function getSB3Token() {
+            return new Promise((resolve) => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const urlToken = urlParams.get('token');
+                if (urlToken) {
+                    sb3Token = urlToken;
+                    resolve();
+                    return;
+                }
+
+                if (window !== window.top) {
+                    window.addEventListener('message', function listener(e) {
+                        if (e.data.action === 'SB3_TOKEN') {
+                            sb3Token = e.data.payload.token;
+                            window.removeEventListener('message', listener);
+                            resolve();
+                        }
+                    });
+                    window.parent.postMessage({ action: 'GET_SB3_TOKEN' }, '*');
+                } else {
+                    sb3Token = 'dev_token_123456';
+                    resolve();
+                }
+            });
+        }
+
+        // ===================== 核心修改：空值不传递参数 =====================
+        async function getList(page = 1) {
+            currentPage = page;
+            showLoading();
+
+            // 只收集有值的参数，空值不加入
+            const params = {};
+            params.page = currentPage;
+            params.pageSize = pageSize;
+            params.date = document.getElementById('logDate').value;
+
+            const formData = {
+                dimension: document.getElementById('dimension').value?.trim(),
+                source: document.getElementById('source').value?.trim(),
+                sourceX: document.getElementById('sourceX').value?.trim(),
+                sourceY: document.getElementById('sourceY').value?.trim(),
+                sourceZ: document.getElementById('sourceZ').value?.trim(),
+                event: document.getElementById('event').value?.trim(),
+                target: document.getElementById('target').value?.trim(),
+                targetX: document.getElementById('targetX').value?.trim(),
+                targetY: document.getElementById('targetY').value?.trim(),
+                targetZ: document.getElementById('targetZ').value?.trim(),
+                additionalInfo: document.getElementById('additionalInfo').value?.trim()
+            };
+
+            // 只添加非空参数
+            for (const key in formData) {
+                if (formData[key] !== undefined && formData[key] !== null && formData[key] !== '') {
+                    params[key] = formData[key];
+                }
+            }
+
+            try {
+                const res = await fetch(`/api/plugin/weblogs?${new URLSearchParams(params)}`, {
+                    method: 'GET',
+                    headers: {
+                        "Authorization": "Bearer " + sb3Token,
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if (res.status === 401 || res.status === 403) {
+                    window.parent.postMessage({ action: 'TOKEN_EXPIRED' }, '*');
+                    showNotice('登录已失效', 'error');
+                    showEmpty();
+                    return;
+                }
+
+                const data = await res.json();
+                const records = data.data?.records || [];
+                const total = data.data?.total || 0;
+                totalPage = Math.ceil(total / pageSize);
+
+                renderTable(records);
+                renderPagination();
+                adjustIframe();
+
+            } catch (e) {
+                showNotice('加载失败', 'error');
+                showEmpty();
+            }
+        }
+
+        function renderTable(list) {
+            hideLoading();
+            if (!list || list.length === 0) {
+                showEmpty();
+                return;
+            }
+
+            document.getElementById('empty').style.display = 'none';
+            document.getElementById('logTable').style.display = 'table';
+            document.getElementById('pagination').style.display = 'flex';
+
+            document.getElementById('tbody').innerHTML = list.map(item => `
+            <tr>
+                <td>${item.time || '-'}</td>
+                <td>${item.dimension || '-'}</td>
+                <td>${item.source || '-'}</td>
+                <td>${item.sourceX || '-'}</td>
+                <td>${item.sourceY || '-'}</td>
+                <td>${item.sourceZ || '-'}</td>
+                <td>${item.event || '-'}</td>
+                <td>${item.target || '-'}</td>
+                <td>${item.targetX || '-'}</td>
+                <td>${item.targetY || '-'}</td>
+                <td>${item.targetZ || '-'}</td>
+                <td>${item.additionalInfo || '-'}</td>
+            </tr>
+        `).join('');
+        }
+
+        function renderPagination() {
+            const pagesEl = document.getElementById('pages');
+            pagesEl.innerHTML = '';
+            const prev = document.getElementById('prev');
+            const next = document.getElementById('next');
+            prev.disabled = currentPage <= 1;
+            next.disabled = currentPage >= totalPage;
+
+            const start = Math.max(1, currentPage - 2);
+            const end = Math.min(totalPage, currentPage + 2);
+
+            for (let i = start; i <= end; i++) {
+                const btn = document.createElement('button');
+                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => getList(i);
+                pagesEl.appendChild(btn);
+            }
+        }
+
+        function adjustIframe() {
+            if (window !== window.top) {
+                window.parent.postMessage({
+                    action: 'ADJUST_IFRAME_HEIGHT',
+                    payload: { height: document.body.scrollHeight + 30 }
+                }, '*');
+            }
+        }
+
+        function bindEvent() {
+            document.getElementById('searchBtn').onclick = () => {
+                currentPage = 1;
+                getList(1);
+            };
+
+            document.getElementById('resetBtn').onclick = () => {
+                document.querySelectorAll('.query-form input, .query-form select').forEach(el => {
+                    el.type === 'date' ? el.value = getToday() : el.value = '';
+                });
+                currentPage = 1;
+                getList(1);
+            };
+
+            document.getElementById('prev').onclick = () => {
+                if (currentPage > 1) getList(currentPage - 1);
+            };
+
+            document.getElementById('next').onclick = () => {
+                if (currentPage < totalPage) getList(currentPage + 1);
+            };
+        }
+
+        async function init() {
+            await getSB3Token();
+            document.getElementById('logDate').value = getToday();
+            bindEvent();
+            getList(1);
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

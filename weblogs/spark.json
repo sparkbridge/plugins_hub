@@ -1,0 +1,9 @@
+{
+    "name": "weblogs",
+    "version": "1.0.0",
+    "author": "lition",
+    "desc": "网页面板查看行为日志",
+    "permission": "key",
+    "priority": "main",
+    "load": true
+}
